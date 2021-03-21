@@ -1,4 +1,5 @@
 import {
+  BaseEntity,
   CreateDateColumn,
   DeleteDateColumn,
   PrimaryColumn,
@@ -6,8 +7,9 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-export class BaseUUIDEntity {
+export abstract class BaseUUIDEntity extends BaseEntity {
   @PrimaryColumn({ unique: true })
+  @PrimaryGeneratedColumn('uuid')
   id?: string;
 
   @CreateDateColumn({ name: 'created_at' })
@@ -20,7 +22,7 @@ export class BaseUUIDEntity {
   deletedAt?: Date;
 }
 
-export class BaseIncrementEntity {
+export abstract class BaseIncrementEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
   id?: number;
 
