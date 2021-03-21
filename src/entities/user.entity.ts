@@ -1,11 +1,12 @@
+import { Exclude } from 'class-transformer';
 import { Column, Entity } from 'typeorm';
 import { BaseUUIDEntity } from './base.entity';
 
 @Entity({ name: 'users' })
 export class User extends BaseUUIDEntity {
-  constructor(init?: Partial<User>) {
+  constructor(partial?: Partial<User>) {
     super();
-    Object.assign(this, init);
+    Object.assign(this, partial);
   }
 
   @Column({
@@ -28,5 +29,6 @@ export class User extends BaseUUIDEntity {
     type: 'varchar',
     length: 100,
   })
+  @Exclude()
   public password: string;
 }
