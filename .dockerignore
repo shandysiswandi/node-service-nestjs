@@ -1,0 +1,10 @@
+.git/
+.vscode/
+
+node_modules/
+dist/
+
+.env.example
+.gitignore
+.gitattributes
+README.md
