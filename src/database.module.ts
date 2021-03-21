@@ -16,7 +16,12 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
           password: configService.get('ORM_PASSWORD'),
           database: configService.get('ORM_DATABASE'),
           entities: [__dirname + '/entities/*.entity{.ts,.js}'],
-          synchronize: true,
+          // synchronize: true,
+          autoLoadEntities: true,
+          migrations: [__dirname + '/resources/migrations/*{.ts,.js}'],
+          cli: {
+            migrationsDir: __dirname + '/resources/migrations/*{.ts,.js}',
+          },
         };
       },
     }),
