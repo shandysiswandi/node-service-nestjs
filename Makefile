@@ -5,7 +5,7 @@ include .env
 VERSION					= $(shell git describe --tags --always)
 
 DOCKER_CONTAINER_NAME	= $(NAME)
-DOCKER_IMAGE_NAME		= $(NAME):$(VERSION)
+DOCKER_IMAGE_NAME		= $(NAME)
 
 CONTAINER_NAME_EXIST	= $(shell docker ps -aq --filter name=${DOCKER_CONTAINER_NAME})
 IMAGE_NAME_EXIST		= $(shell docker images -aq ${DOCKER_IMAGE_NAME})
@@ -19,7 +19,8 @@ docker-build:
 	@docker build -f Dockerfile -t $(DOCKER_IMAGE_NAME) .
 
 docker-run:
-	@docker run -d --restart=always --network=mysql --name=$(DOCKER_CONTAINER_NAME) -p $(PORT):$(PORT) $(DOCKER_IMAGE_NAME)
+	@docker run -d --restart=always --network=local_network --name=$(DOCKER_CONTAINER_NAME) -p $(PORT):$(PORT) $(DOCKER_IMAGE_NAME)
+	# @docker network connect local_network $(DOCKER_CONTAINER_NAME)
 
 docker-rm-container:
 	@if [ -n "$(CONTAINER_NAME_EXIST)" ]; then docker rm $(CONTAINER_NAME_EXIST) --force; fi;
