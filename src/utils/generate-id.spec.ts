@@ -1,4 +1,4 @@
-import ID from './generate-id';
+import { ID } from './generate-id';
 
 describe('Generate ID', () => {
   describe('ID()', () => {
