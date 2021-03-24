@@ -1,8 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
-import {
-  BaseController,
-  BaseRESTResponse,
-} from './core/controllers/base.controller';
+import { BaseController } from './core/controllers/base.controller';
+import { BaseRESTResponse } from './core/types/base-rest-response.type';
 
 @Controller()
 export class AppController extends BaseController {
