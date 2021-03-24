@@ -1,8 +1,4 @@
-interface BaseRESTResponse {
-  error: boolean;
-  message: string;
-  data: any;
-}
+import { BaseRESTResponse } from '../types/base-rest-response.type';
 
 export class BaseController {
   async response(message: string, data?: any): Promise<BaseRESTResponse> {
